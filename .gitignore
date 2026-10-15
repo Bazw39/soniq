@@ -1,0 +1,18 @@
+# Executables
+bin
+cli
+soniq
+*.exe
+
+# MacOS
+.DS_Store
+
+# Node.js
+node_modules
+
+# Generated wrapper bundle
+jsHelper/soniqWrapper.js
+jsHelper/soniqWrapper.js.map
+
+# Logs
+install.log
