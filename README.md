@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/assets/soniq-logo.svg" alt="SONIQ logo" width="160">
+<img src=".github/assets/soniq-logo.png" alt="SONIQ logo" width="160">
 
 # SONIQ
 
@@ -8,7 +8,7 @@
 
 *Made by NOX / VANTA / blasphemyw*
 
-[![Latest version](https://img.shields.io/github/release/soniq/cli/all.svg?colorB=97CA00&label=latest%20version)](https://github.com/soniq/cli/releases/latest)
+[![Latest version](https://img.shields.io/github/release/Bazw39/soniq/all.svg?colorB=97CA00&label=latest%20version)](https://github.com/Bazw39/soniq/releases/latest)
 
 </div>
 
@@ -42,7 +42,7 @@ before and after applying changes.
 ### Windows (PowerShell)
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/soniq/cli/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Bazw39/soniq/main/install.ps1 | iex
 ```
 
 The installer downloads the latest `soniq-<version>-windows-<arch>.zip`
@@ -52,13 +52,13 @@ directory to your user `PATH`.
 To install a specific version:
 
 ```powershell
-$v="2.42.0"; iwr -useb https://raw.githubusercontent.com/soniq/cli/main/install.ps1 | iex
+$v="2.42.0"; iwr -useb https://raw.githubusercontent.com/Bazw39/soniq/main/install.ps1 | iex
 ```
 
 ### macOS / Linux (shell)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/soniq/cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Bazw39/soniq/main/install.sh | sh
 ```
 
 The installer downloads the latest `soniq-<version>-<os>-<arch>.tar.gz`
@@ -68,7 +68,7 @@ directory to your `PATH` through your shell profile.
 To install a specific version:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/soniq/cli/main/install.sh | sh -s -- 2.42.0
+curl -fsSL https://raw.githubusercontent.com/Bazw39/soniq/main/install.sh | sh -s -- 2.42.0
 ```
 
 To point the installers at a custom release location (forks, mirrors, offline
@@ -194,7 +194,7 @@ Requirements: [Go](https://go.dev/dl/) (see `go.mod`), plus
 wrapper helper.
 
 ```sh
-git clone https://github.com/soniq/cli.git
+git clone https://github.com/Bazw39/soniq.git
 cd cli
 pnpm install
 pnpm build:wrapper   # regenerates jsHelper/soniqWrapper.js

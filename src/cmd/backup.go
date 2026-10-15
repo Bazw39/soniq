@@ -1,0 +1,170 @@
+package cmd
+
+import (
+	"fmt"
+	"os"
+
+	spotifystatus "github.com/spicetify/cli/src/status/spotify"
+
+	"github.com/spicetify/cli/src/backup"
+	"github.com/spicetify/cli/src/preprocess"
+	backupstatus "github.com/spicetify/cli/src/status/backup"
+	"github.com/spicetify/cli/src/utils"
+)
+
+// Backup stores original apps packages, extracts them and preprocesses extracted apps' assets
+// If silent is true, the final readiness message is suppressed (useful when chaining with "apply")
+func Backup(soniqVersion string, silent bool) {
+	if isAppX {
+		utils.PrintInfo(`You are using the Microsoft Store version of Spotify, which is only partly supported.
+Don't use the Microsoft Store version with SONIQ unless you absolutely CANNOT install Spotify from its installer.
+Modded Spotify cannot be launched using original Shortcut/Start menu tile. To correctly launch modified Spotify, make a desktop shortcut that executes "soniq auto". After that, you can change its icon, pin it to the start menu or put it in the startup folder.`)
+		if !ReadAnswer("Continue backing up anyway?", false, true) {
+			os.Exit(1)
+		}
+	}
+	backupVersion := backupSection.Key("version").MustString("")
+	backStat := backupstatus.Get(prefsPath, backupFolder, backupVersion)
+	if !backStat.IsEmpty() {
+		utils.PrintInfo("A backup is available")
+
+		spotStat := spotifystatus.Get(appPath)
+		if spotStat.IsBackupable() {
+			clearBackup()
+		} else {
+			utils.PrintWarning(`After clearing backup, Spotify cannot be backed up again`)
+			utils.PrintInfo(`Please restore first then backup, run "soniq restore backup" or re-install Spotify then run "soniq backup"`)
+			os.Exit(1)
+		}
+	}
+
+	spinner, _ := utils.Spinner.Start("Backing up app files")
+
+	if err := backup.Start(appPath, backupFolder); err != nil {
+		spinner.Fail("Failed to backup app files")
+		utils.Fatal(err)
+	}
+
+	appList, err := os.ReadDir(backupFolder)
+	if err != nil {
+		spinner.Fail("Failed to backup app files")
+		utils.Fatal(err)
+	}
+
+	totalApp := len(appList)
+	if totalApp > 0 {
+		spinner.Success("Backed up app files")
+	} else {
+		spinner.Fail("Failed to backup app files")
+		utils.PrintInfo("Reinstall Spotify and try again")
+		os.Exit(1)
+	}
+
+	backup.Extract(backupFolder, rawFolder)
+
+	utils.PrintBold("Preprocessing")
+
+	spotifyBasePath := spotifyPath
+	if spotifyBasePath == "" {
+		utils.PrintError("Spotify installation path not found. Cannot preprocess V8 snapshots")
+	} else {
+		preprocess.Start(
+			soniqVersion,
+			spotifyBasePath,
+			rawFolder,
+			preprocess.Flag{
+				DisableSentry:  preprocSection.Key("disable_sentry").MustBool(false),
+				DisableLogging: preprocSection.Key("disable_ui_logging").MustBool(false),
+				RemoveRTL:      preprocSection.Key("remove_rtl_rule").MustBool(false),
+				ExposeAPIs:     preprocSection.Key("expose_apis").MustBool(false),
+				SpotifyVer:     utils.GetSpotifyVersion(prefsPath)},
+		)
+		utils.PrintSuccess("Preprocessing completed")
+	}
+
+	err = utils.Copy(rawFolder, themedFolder, true, []string{".html", ".js", ".css"})
+	if err != nil {
+		utils.Fatal(err)
+	}
+
+	preprocess.StartCSS(themedFolder)
+
+	backupSection.Key("version").SetValue(utils.GetSpotifyVersion(prefsPath))
+	backupSection.Key("with").SetValue(soniqVersion)
+	if err := cfg.Write(); err != nil {
+		utils.PrintWarning(fmt.Sprintf("Failed to save config: %s", err.Error()))
+	}
+	if !silent {
+		utils.PrintSuccess("Everything is ready, you can start applying!")
+	}
+}
+
+// Clear clears current backup. Before clearing, it checks whether Spotify is in
+// valid state to backup again.
+func Clear() {
+	spotStat := spotifystatus.Get(appPath)
+
+	if !spotStat.IsBackupable() {
+		utils.PrintWarning("Before clearing backup, please restore or re-install Spotify to stock state")
+		os.Exit(1)
+	}
+
+	clearBackup()
+}
+
+func clearBackup() {
+	spinner, _ := utils.Spinner.Start("Clearing current backup")
+	if err := os.RemoveAll(backupFolder); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	if err := os.Mkdir(backupFolder, 0700); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	if err := os.RemoveAll(rawFolder); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	if err := os.Mkdir(rawFolder, 0700); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	if err := os.RemoveAll(themedFolder); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	if err := os.Mkdir(themedFolder, 0700); err != nil {
+		spinner.Fail("Failed to clear current backup")
+		utils.Fatal(err)
+	}
+
+	backupSection.Key("version").SetValue("")
+	backupSection.Key("with").SetValue("")
+	if err := cfg.Write(); err != nil {
+		utils.PrintWarning(fmt.Sprintf("Failed to save config: %s", err.Error()))
+	}
+	spinner.Success("Cleared current backup")
+}
+
+// Restore uses backup to revert every changes made by SONIQ.
+func Restore() {
+	CheckStates()
+	spinner, _ := utils.Spinner.Start("Restoring Spotify")
+	if err := os.RemoveAll(appDestPath); err != nil {
+		spinner.Fail("Failed to restore Spotify")
+		utils.Fatal(err)
+	}
+
+	if err := utils.Copy(backupFolder, appDestPath, false, []string{".spa"}); err != nil {
+		spinner.Fail("Failed to restore Spotify")
+		utils.Fatal(err)
+	}
+
+	spinner.Success("Restored Spotify")
+}

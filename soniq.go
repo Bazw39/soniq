@@ -509,7 +509,11 @@ upgrade|update      Update soniq to the latest version if an update is available
 -v, --version       Print version number and quit
 
 For config information, run "soniq -h config".
+<<<<<<< HEAD
 For more information and reporting bugs: https://github.com/soniq/cli`)
+=======
+For more information and reporting bugs: https://github.com/Bazw39/soniq`)
+>>>>>>> adc39be (SONIQ release v2.42.0)
 }
 
 func helpConfig() {
@@ -542,7 +546,11 @@ spotify_launch_flags <string>
     Separate each flag with "|".
     To set flags from the CLI, place "--" before the value.
     Example: soniq config spotify_launch_flags -- "--flag-1|--flag-2"
+<<<<<<< HEAD
     List of valid flags: https://github.com/soniq/cli/blob/main/README.md#configuration
+=======
+    List of valid flags: https://github.com/Bazw39/soniq/blob/main/README.md#configuration
+>>>>>>> adc39be (SONIQ release v2.42.0)
 
 always_enable_devtools <0 | 1>
     Whether Chrome DevTools is enabled when launching/restarting Spotify.

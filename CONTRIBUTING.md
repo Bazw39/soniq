@@ -12,6 +12,7 @@
 
 ## I Have a Question
 
+<<<<<<< HEAD
 > If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/soniq/cli#readme/).
 
 Before you ask a question, it is best to search for existing [issues](https://github.com/soniq/cli/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
@@ -19,6 +20,15 @@ Before you ask a question, it is best to search for existing [issues](https://gi
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
 - Open an [issue](https://github.com/soniq/cli/issues/new).
+=======
+> If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/Bazw39/soniq#readme/).
+
+Before you ask a question, it is best to search for existing [issues](https://github.com/Bazw39/soniq/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
+
+If you then still feel the need to ask a question and need clarification, we recommend the following:
+
+- Open an [issue](https://github.com/Bazw39/soniq/issues/new).
+>>>>>>> adc39be (SONIQ release v2.42.0)
 - Provide both SONIQ and Spotify version.
 - Explain what the problem is.
 
@@ -36,15 +46,25 @@ We will then take care of the issue as soon as possible.
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 
 - Make sure that you are using the latest version.
+<<<<<<< HEAD
 - Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](https://github.com/soniq/cli#readme/). If you are looking for support, you might want to check [this section](#i-have-a-question)).
 - To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/soniq/cli/labels/%F0%9F%90%9B%20bug).
+=======
+- Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions (Make sure that you have read the [documentation](https://github.com/Bazw39/soniq#readme/). If you are looking for support, you might want to check [this section](#i-have-a-question)).
+- To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/Bazw39/soniq/labels/%F0%9F%90%9B%20bug).
+>>>>>>> adc39be (SONIQ release v2.42.0)
 
 #### How Do I Submit a Good Bug Report?
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
+<<<<<<< HEAD
 - Open an [issue](https://github.com/soniq/cli/issues/new). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
   - Use the provided [bug template](https://github.com/soniq/cli/issues/new?assignees=&labels=%F0%9F%90%9B+bug&projects=&template=bug_report.yml).
+=======
+- Open an [issue](https://github.com/Bazw39/soniq/issues/new). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
+  - Use the provided [bug template](https://github.com/Bazw39/soniq/issues/new?assignees=&labels=%F0%9F%90%9B+bug&projects=&template=bug_report.yml).
+>>>>>>> adc39be (SONIQ release v2.42.0)
 - Explain the behavior you would expect and the actual behavior.
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
@@ -56,13 +76,22 @@ This section guides you through submitting an enhancement suggestion for soniq, 
 #### Before Submitting an Enhancement
 
 - Make sure that you are using the latest version.
+<<<<<<< HEAD
 - Read the [documentation](https://github.com/soniq/cli#readme/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
 - Perform a [search](https://github.com/soniq/cli/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
+=======
+- Read the [documentation](https://github.com/Bazw39/soniq#readme/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
+- Perform a [search](https://github.com/Bazw39/soniq/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
+>>>>>>> adc39be (SONIQ release v2.42.0)
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
 #### How Do I Submit a Good Enhancement Suggestion?
 
+<<<<<<< HEAD
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/soniq/cli/issues). Create an enhancement suggestion using the provided [feature request template](https://github.com/soniq/cli/issues/new?assignees=&labels=%E2%9C%A8+feature&projects=&template=feature_request.yml).
+=======
+Enhancement suggestions are tracked as [GitHub issues](https://github.com/Bazw39/soniq/issues). Create an enhancement suggestion using the provided [feature request template](https://github.com/Bazw39/soniq/issues/new?assignees=&labels=%E2%9C%A8+feature&projects=&template=feature_request.yml).
+>>>>>>> adc39be (SONIQ release v2.42.0)
 
 - Use a **clear and descriptive title** for the issue to identify the suggestion.
 - Provide a **step-by-step description of the suggested enhancement** in as many details as possible.
@@ -79,8 +108,13 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/soniq/
 
 #### Environment Setup and Development
 
+<<<<<<< HEAD
 Follow the steps outlined in the [documentation](https://github.com/soniq/cli#development) or the steps below.
 1. Clone the repository using `git clone https://github.com/soniq/cli.git`.
+=======
+Follow the steps outlined in the [documentation](https://github.com/Bazw39/soniq#development) or the steps below.
+1. Clone the repository using `git clone https://github.com/Bazw39/soniq.git`.
+>>>>>>> adc39be (SONIQ release v2.42.0)
 2. Enter the repository directory and build the wrapper helper.
    ```
    cd cli
@@ -100,7 +134,11 @@ Follow the steps outlined in the [documentation](https://github.com/soniq/cli#de
 
 ### Improving The Documentation
 
+<<<<<<< HEAD
 To improve the [documentation](https://github.com/soniq/cli#readme), navigate to the documentation [repository](https://github.com/soniq/docs).
+=======
+To improve the [documentation](https://github.com/Bazw39/soniq#readme), navigate to the documentation [repository](https://github.com/soniq/docs).
+>>>>>>> adc39be (SONIQ release v2.42.0)
 
 ### Commit Message Format
 

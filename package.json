@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "@soniq/cli",
+=======
+  "name": "@Bazw39/soniq",
+>>>>>>> adc39be (SONIQ release v2.42.0)
   "private": true,
   "type": "module",
   "scripts": {
