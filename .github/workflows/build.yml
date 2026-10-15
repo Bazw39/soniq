@@ -174,8 +174,15 @@ jobs:
     needs: release
     if: github.event.release.prerelease == false
     steps:
-      # Configure SONIQ_WINGET_TOKEN and the package identifier below to publish SONIQ to Winget.
+      # Winget publishing is optional. To enable it:
+      # 1. Submit SONIQ.SONIQ to https://github.com/microsoft/winget-pkgs once
+      #    manually (e.g. with `wingetcreate`), as this action only updates
+      #    packages that already exist there.
+      # 2. Add a SONIQ_WINGET_TOKEN repository secret containing a classic PAT
+      #    with the `public_repo` scope.
+      # Until then this step is allowed to fail without failing the workflow.
       - name: Update Winget package
+        continue-on-error: true
         uses: vedantmgoyal9/winget-releaser@main
         with:
           identifier: SONIQ.SONIQ
