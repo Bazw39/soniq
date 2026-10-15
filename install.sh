@@ -78,11 +78,7 @@ command -v grep >/dev/null || { log "grep isn't installed!" >&2; exit 1; }
 
 # download uri
 # Override with SONIQ_RELEASES_URL to install from a custom location.
-<<<<<<< HEAD
-releases_uri=${SONIQ_RELEASES_URL:-https://github.com/soniq/cli/releases}
-=======
 releases_uri=${SONIQ_RELEASES_URL:-https://github.com/Bazw39/soniq/releases}
->>>>>>> adc39be (SONIQ release v2.42.0)
 if [ -z "$tag" ]; then
     tag=$(curl -LsH 'Accept: application/json' $releases_uri/latest)
     tag=${tag%\,\"update_url*}

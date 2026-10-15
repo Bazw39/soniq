@@ -21,14 +21,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
           node-version: "24"
-          cache: pnpm
+
+      - name: Enable Corepack
+        run: corepack enable
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
 
       - name: Install Node dependencies
         run: pnpm install --frozen-lockfile
@@ -72,14 +73,15 @@ jobs:
       - name: Get Tag
         run: echo "TAG=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
           node-version: "24"
-          cache: pnpm
+
+      - name: Enable Corepack
+        run: corepack enable
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
 
       - name: Install Node dependencies
         run: pnpm install --frozen-lockfile
