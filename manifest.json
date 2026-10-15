@@ -40,5 +40,11 @@
 		"description": "Throw songs/artists to trash bin and never hear them again (automatically skip). This extension will append a Throw to Trashbin option in tracks and artists link right click menu.",
 		"preview": "https://i.imgur.com/ZFTy5Rm.png",
 		"main": "Extensions/trashbin.js"
+	},
+	{
+		"name": "SONIQ Store Button",
+		"description": "Adds a star button to the top bar that opens the SONIQ Store, where you can browse extensions and themes.",
+		"preview": null,
+		"main": "Extensions/soniqStore.js"
 	}
 ]

@@ -1,0 +1,8 @@
+{
+	"name": {
+		"en": "SONIQ Store"
+	},
+	"icon": "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2.5l2.92 6.36 6.58.72-4.9 4.55 1.35 6.47L12 17.1l-5.95 3.5 1.35-6.47-4.9-4.55 6.58-.72L12 2.5z\"/></svg>",
+	"active-icon": "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2.5l2.92 6.36 6.58.72-4.9 4.55 1.35 6.47L12 17.1l-5.95 3.5 1.35-6.47-4.9-4.55 6.58-.72L12 2.5z\"/></svg>",
+	"subfiles": ["catalog.js"]
+}

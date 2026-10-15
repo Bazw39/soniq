@@ -168,6 +168,26 @@ config key are honored as fallbacks during migration.
   manifest fields are intentionally preserved for compatibility. See
   `CONTRIBUTING.md` for build details.
 
+### SONIQ Store
+
+SONIQ ships a built-in store so you can browse without leaving Spotify:
+
+- Enable it once: `soniq config custom_apps soniq-store extensions soniqStore.js`
+  followed by `soniq apply` (Spotify restarts).
+- Click the **★ star button** in the top bar, or open the **SONIQ Store**
+  entry in the sidebar.
+- The **Extensions** tab lists every bundled extension; the **Themes** tab
+  lists `SONIQDefault` with clickable color-scheme swatches plus popular
+  community themes.
+- Each card has a button that copies the exact terminal command
+  (e.g. `soniq config extensions bookmark.js`). Paste it in a terminal, run
+  it, then run `soniq apply` and restart Spotify when asked.
+
+Community themes live in the
+[spicetify/themes](https://github.com/spicetify/themes) collection:
+download a theme folder into your SONIQ `Themes` directory, then enable it
+with `soniq config current_theme <FolderName>` + `soniq apply`.
+
 ## Troubleshooting
 
 - **"spotify_path is not a valid path"** — set it manually:
