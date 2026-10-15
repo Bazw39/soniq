@@ -68,7 +68,8 @@ git tag -d Spicetify 2>nul
 git push origin :refs/tags/Spicetify 2>nul
 
 echo [4/5] Creating release %TAG% ...
-gh release list --limit 1 >nul 2>&1 || (echo ERROR: gh not authenticated. Run 'gh auth login'. & exit /b 1)
+gh release delete "%TAG%" --cleanup-tag --yes 2>nul || echo (no existing '%TAG%' release, continuing)
+git push origin :refs/tags/%TAG% 2>nul
 gh release create "%TAG%" --title "SONIQ v%VERSION%" --generate-notes || (echo ERROR: release creation failed. & exit /b 1)
 
 echo [5/5] Done. The 'SONIQ Build' workflow is now compiling assets.
