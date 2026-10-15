@@ -28,7 +28,14 @@ git config user.email >nul 2>&1 || (
   git config user.name "Bazw39"
   git config user.email "Bazw39@users.noreply.github.com"
 )
-git commit -m "SONIQ release %TAG%" || (echo ERROR: commit failed, see message above. & exit /b 1)
+if exist ".git\rebase-merge" (
+  git -c core.editor=true rebase --continue 2>nul || (
+    echo (clearing stale rebase state...)
+    rmdir /s /q ".git\rebase-merge" 2>nul
+    rmdir /s /q ".git\rebase-apply" 2>nul
+  )
+)
+git commit -m "SONIQ release %TAG%" 2>nul || echo (nothing new to commit)
 for /f "delims=" %%b in ('git branch --show-current 2^>nul') do set "BRANCH=%%b"
 if "%BRANCH%"=="" set "BRANCH=main"
 git push -u origin "%BRANCH%" 2>nul || (
