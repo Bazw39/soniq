@@ -52,6 +52,12 @@ goto :have_version
 :have_version
 set "TAG=v%VERSION%"
 echo Releasing SONIQ %TAG%
+if exist ".last-publish" (
+  set /p LASTPUB=<.last-publish
+  echo Last published: !LASTPUB!
+) else (
+  echo Last published: never
+)
 
 where git >nul 2>&1 || (echo ERROR: git not found on PATH. & exit /b 1)
 
@@ -123,4 +129,8 @@ gh release create "%TAG%" --title "SONIQ v%VERSION%" --generate-notes || (echo E
 echo [5/6] Done. The 'SONIQ Build' workflow is now compiling assets.
 echo Watch it at: https://github.com/Bazw39/soniq/actions
 echo When it finishes, the README badge and installers will go live.
+for /f "delims=" %%d in ('powershell -NoProfile -Command "Get-Date -Format 'yyyy-MM-dd HH:mm:ss'" 2^>nul') do set "STAMP=%%d"
+if not defined STAMP set "STAMP=%DATE% %TIME%"
+echo %TAG% published at %STAMP% > .last-publish
+echo Published %TAG% at %STAMP% (saved to .last-publish)
 endlocal
